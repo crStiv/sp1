@@ -18,39 +18,39 @@ const HELPER_TARGET_SUBDIR: &str = "elf-compilation";
 /// features.
 #[derive(Clone, Parser, Debug)]
 pub struct BuildArgs {
-    #[clap(
+    #[arg(
         long,
         action,
         help = "Run compilation using a Docker container for reproducible builds."
     )]
     pub docker: bool,
-    #[clap(
+    #[arg(
         long,
         help = "The ghcr.io/succinctlabs/sp1 image tag to use when building with Docker.",
         default_value = DEFAULT_TAG
     )]
     pub tag: String,
-    #[clap(
+    #[arg(
         long,
         action,
         value_delimiter = ',',
         help = "Space or comma separated list of features to activate"
     )]
     pub features: Vec<String>,
-    #[clap(
+    #[arg(
         long,
         action,
         value_delimiter = ',',
         help = "Space or comma separated list of extra flags to invokes `rustc` with"
     )]
     pub rustflags: Vec<String>,
-    #[clap(long, action, help = "Do not activate the `default` feature")]
+    #[arg(long, action, help = "Do not activate the `default` feature")]
     pub no_default_features: bool,
-    #[clap(long, action, help = "Ignore `rust-version` specification in packages")]
+    #[arg(long, action, help = "Ignore `rust-version` specification in packages")]
     pub ignore_rust_version: bool,
-    #[clap(long, action, help = "Assert that `Cargo.lock` will remain unchanged")]
+    #[arg(long, action, help = "Assert that `Cargo.lock` will remain unchanged")]
     pub locked: bool,
-    #[clap(
+    #[arg(
         short,
         long,
         action,
@@ -58,7 +58,7 @@ pub struct BuildArgs {
         num_args = 1..
     )]
     pub packages: Vec<String>,
-    #[clap(
+    #[arg(
         alias = "bin",
         long,
         action,
@@ -66,9 +66,9 @@ pub struct BuildArgs {
         num_args = 1..
     )]
     pub binaries: Vec<String>,
-    #[clap(long, action, help = "ELF binary name", default_value = "")]
+    #[arg(long, action, help = "ELF binary name", default_value = "")]
     pub elf_name: String,
-    #[clap(
+    #[arg(
         alias = "out-dir",
         long,
         action,
